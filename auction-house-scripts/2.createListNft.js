@@ -25,23 +25,21 @@ console.log(wallet.publicKey);
 
 const main = async (sellerWallet, nftStringAddress, price) => {
   const nftAddress = new PublicKey(new BN(nftStringAddress, 16));
+  console.log("NFT address: ", nftAddress.toBase58());
+
   const auctionHouseAddress = new PublicKey(
     new BN(process.env.AUCTION_HOUSE, 16)
   );
-  //   console.log(auctionHouseAddress);
 
-  const seller = sellerWallet;
-  console.log("Seller wallet: ", sellerWallet.publicKey);
-  console.log("NFT address: ", nftAddress.toBase58());
   const auctionHouse = await metaplex
     .auctionHouse()
     .findByAddress({address: auctionHouseAddress});
 
-  console.log(auctionHouse);
+  console.log("auctionHouse: ", auctionHouse);
 
   const {listing} = await metaplex.auctionHouse().list({
     auctionHouse,
-    seller,
+    seller: sellerWallet,
     mintAccount: nftAddress,
     price: price,
   });
@@ -58,9 +56,5 @@ const nftAddress =
   "4a8a1513f0cdb07ad5db146d9ce7eac3ddd098204b5ebdba74edbf602df8e683";
 
 const price = 1000000000;
-const auctionFeeAddress =
-  "208e61ebda468a7455afedad8fe5bfddb6c261387f8db5fc9a07be1a0668c28c";
-const auctionFeePk = new PublicKey(new BN(auctionFeeAddress, 16));
-console.log("Auction fee: ", auctionFeePk.toBase58());
 
 main(sellerWallet, nftAddress, price);

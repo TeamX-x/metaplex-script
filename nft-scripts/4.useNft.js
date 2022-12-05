@@ -28,9 +28,6 @@ const metaplex = Metaplex.make(connection)
 console.log(wallet.publicKey.toBase58());
 
 const useEdition = async (mintAddress) => {
-//   await metaplex
-//     .nfts()
-//     .use({mintAddress: mintAddress, owner: userSignerAccount});
   const nft = await metaplex.nfts().findByMint({mintAddress});
   const updatedNft = await metaplex.nfts().refresh(nft);
   console.log("NFT: ", updatedNft);

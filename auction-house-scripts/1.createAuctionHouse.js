@@ -12,7 +12,6 @@ const connection = new Connection(clusterApiUrl("devnet"));
 const metaplex = Metaplex.make(connection)
   .use(keypairIdentity(wallet))
   .use(bundlrStorage());
-console.log(wallet);
 
 const main = async () => {
   const {auctionHouse} = await metaplex

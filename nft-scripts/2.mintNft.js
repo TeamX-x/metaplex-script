@@ -50,7 +50,6 @@ const mintNft = async (to, uri, name, symbol) => {
   console.log(nft);
 };
 
-// const to = new PublicKey("8AGZrh65YiifkN5KEL19CJXbrXTZ3mb3dZFTwoHBuTSD");
 const uri = "https://arweave.net/123";
 const to = wallet.publicKey;
 mintNft(to, uri, "My NFT", "Dapp1");
