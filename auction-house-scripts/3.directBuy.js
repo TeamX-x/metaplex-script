@@ -40,10 +40,13 @@ const main = async (buyerWallet, receiptStringAddress) => {
     auctionHouse,
   });
 
+  console.log("listing is: ", listing);
   console.log(listing.price);
+  console.log("Buyer Wallet: ", buyerWallet.publicKey.toBase58());
+  console.log("Buyer Wallet: ", buyerWallet.secretKey);
   const {purchase} = await metaplex.auctionHouse().buy({
     auctionHouse,
-    authority: buyerWallet,
+    buyer: buyerWallet,
     listing,
   });
 
@@ -55,7 +58,6 @@ const main = async (buyerWallet, receiptStringAddress) => {
 const buyerkeyPair = require("/Users/thangtran/.config/solana/devnet-hashlips.json");
 const buyerSeed = Uint8Array.from(buyerkeyPair);
 const buyerWallet = Keypair.fromSecretKey(buyerSeed);
-
 main(
   buyerWallet,
   "db60043b64ca2be978230abe9eed6996a229f0ea0be6b208f96f00d94ab754ef"
