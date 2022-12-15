@@ -37,6 +37,13 @@ const main = async () => {
     .findListings({auctionHouse: auctionHouse});
 
   console.log(allListing);
+
+  const receiptAddress = new PublicKey(
+    new BN('db60043b64ca2be978230abe9eed6996a229f0ea0be6b208f96f00d94ab754ef', 16)
+  );
+
+  const listingMint = await metaplex.auctionHouse().findListingByReceipt({receiptAddress: receiptAddress, auctionHouse:auctionHouse});
+  console.log("listingMint: ", listingMint);
 };
 
 main();
